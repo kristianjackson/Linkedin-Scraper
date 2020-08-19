@@ -18,10 +18,11 @@ print("# Collecting first n job links")
 
 for page in range(25, amountOfJobs, 25):
     print('Page: ' + str(page))
-    print('https://www.linkedin.com/jobs/search?keywords=' + jobName +
-          '&location=' + place + '&start=' + str(page))
-    html = requests.get('https://www.linkedin.com/jobs/search?keywords=' +
-                        jobName + '&location=' + place + '&start=' + str(page))
+    print('https://www.linkedin.com/jobs/search/?f_TPR=r604800&keywords=' +
+          jobName + '&location=' + place + '&start=' + str(page))
+    html = requests.get(
+        'https://www.linkedin.com/jobs/search/?f_TPR=r604800&keywords=' +
+        jobName + '&location=' + place + '&start=' + str(page))
     soup = BeautifulSoup(html.text, 'html.parser')
     joblist = joblist + soup.find(class_='jobs-search__results-list').findAll(
         'a', {'class': 'result-card__full-card-link'})
